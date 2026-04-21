@@ -703,6 +703,7 @@
             
             setTimeout(() => {
                 currentScreen.classList.add('hidden');
+                currentScreen.style.display = ''; // 🚨 [추가] 유령 화면 방지: 인라인 스타일 깔끔하게 지우기
                 introScreen.style.display = 'flex';
                 document.body.classList.add('overflow-hidden'); // 스크롤 다시 잠금
                 
@@ -853,30 +854,32 @@
             if (e.target.id === 'detailModal') closeModal();
         }
 
-        // === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (강력한 버전!) ===
+        // === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (절대 멈추지 않는 초강력 버전!) ===
         window.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('role') === 'professor') {
+                
                 // 1. 첫 화면(인트로) 완전 숨기기
                 document.getElementById('introScreen').style.display = 'none';
                 
-                // 2. 교수님 프로그램 화면 가져오기
+                // 2. 교수님 프로그램 화면 가져와서 100% 보이게 강제 덮어쓰기
                 const profScreen = document.getElementById('professorProgramsScreen');
-                
-                // 3. 확실하게 보이도록 클래스와 스타일 강제 적용
                 profScreen.classList.remove('hidden');
                 profScreen.classList.remove('opacity-0');
-                profScreen.style.display = 'block';
-                profScreen.style.opacity = '1';
                 
-                // 4. (가장 중요) 스크롤이 밑에 머물러서 하얗게 보이는 현상 방지! 무조건 맨 위로 끌어올림
-                window.scrollTo(0, 0);
-                document.body.classList.remove('overflow-hidden');
-                
-                // 5. 주소창 뒤의 꼬리표 깔끔하게 정리
+                // 🚨 [삭제 및 수정] 버그 원인(profScreen.style.display = 'block')을 지우고 꼬임 방지
                 setTimeout(() => {
+                    profScreen.style.opacity = '1';
+                }, 50);
+                
+                // 3. 화면 멈춤(하얀 화면) 방지를 위한 스크롤 강제 리셋
+                document.body.classList.remove('overflow-hidden');
+                window.scrollTo(0, 0);
+                
+                // 4. 주소창 꼬리표 지우기
+                if(window.history.replaceState) {
                     window.history.replaceState({}, document.title, window.location.pathname);
-                }, 100);
+                }
             }
         });
     </script>
