@@ -114,10 +114,16 @@
     <div id="mainApp" class="hidden opacity-0 transition-opacity duration-700">
         <!-- Hero Section -->
         <header class="gradient-bg text-white py-16 md:py-24 px-6 overflow-hidden relative">
+            
+            <!-- 홈(처음)으로 가기 버튼 추가 -->
+            <button onclick="goHome()" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-bold border border-white/30 hover:bg-white/30 hover:-translate-x-1 transition-all">
+                <i class="fa-solid fa-house"></i> 처음으로
+            </button>
+
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full -ml-32 -mb-32 blur-3xl"></div>
 
-            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10 pt-8 md:pt-0">
                 <!-- 좌측 영역 -->
                 <div class="flex-1 w-full text-center md:text-left">
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-sm font-bold mb-6 border border-white/30">
@@ -364,6 +370,30 @@
                 // 본문 서서히 나타나게
                 setTimeout(() => {
                     mainApp.style.opacity = '1';
+                }, 50);
+            }, 700);
+        }
+
+        // === 메인 화면에서 인트로(처음)로 돌아가는 기능 ===
+        function goHome() {
+            const introScreen = document.getElementById('introScreen');
+            const mainApp = document.getElementById('mainApp');
+
+            // 1. 메인 화면 서서히 투명해지기
+            mainApp.style.opacity = '0';
+            
+            // 2. 애니메이션 끝난 후 인트로 표시
+            setTimeout(() => {
+                mainApp.classList.add('hidden');
+                introScreen.style.display = 'flex';
+                document.body.classList.add('overflow-hidden'); // 스크롤 다시 잠금
+                
+                // 스크롤을 맨 위로 올림
+                window.scrollTo(0, 0);
+                
+                // 인트로 서서히 나타나게
+                setTimeout(() => {
+                    introScreen.style.opacity = '1';
                 }, 50);
             }, 700);
         }
