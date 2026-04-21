@@ -90,7 +90,7 @@
         </div>
         
         <!-- 선택 버튼 영역 -->
-        <div class="flex flex-col sm:flex-row gap-5 w-full max-w-md px-6">
+        <div class="flex flex-col sm:flex-row gap-5 w-full max-w-md px-6 z-20">
             <!-- 교수님 버튼 -->
             <button onclick="enterSite('professor')" class="animate-fade-in-up delay-100 flex-1 group relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 overflow-hidden">
                 <div class="absolute inset-0 bg-indigo-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
@@ -113,16 +113,15 @@
                 </div>
             </button>
         </div>
-    </div>
 
-        <!-- 하단 링크 및 푸터 영역 (새로 추가됨) -->
+        <!-- 하단 링크 및 푸터 영역 (인트로 화면용) -->
         <div class="absolute bottom-6 md:bottom-10 w-full flex flex-col items-center gap-5 z-10 animate-fade-in-up delay-300 px-6">
             <!-- 카카오톡 / 오픈채팅방 버튼 -->
             <div class="flex gap-3 w-full max-w-xs justify-center">
                 <a href="http://pf.kakao.com/_jeAgn" target="_blank" class="flex-1 flex justify-center items-center py-3 bg-[#FEE500] text-slate-900 font-bold rounded-xl shadow-sm hover:-translate-y-1 transition-transform gap-1.5 text-sm">
                     <i class="fa-solid fa-comment"></i> 카카오채널
                 </a>
-                <a href="https://open.kakao.com/o/gt4iqori" target="_blank" class="flex-1 flex justify-center items-center py-3 bg-white text-slate-800 font-bold rounded-xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform gap-1.5 text-sm">
+                <a href="https://open.kakao.com/o/gt4iqori" target="_blank" class="flex-1 flex justify-center items-center py-3 bg-white text-slate-800 font-bold rounded-xl shadow-sm border border-slate-200 hover:-translate-y-1 transition-transform gap-1.5 text-sm">
                     <i class="fa-solid fa-comments text-blue-500"></i> 오픈채팅방
                 </a>
             </div>
@@ -137,9 +136,9 @@
             <!-- 카피라이트 -->
             <p class="text-xs md:text-sm text-slate-400 tracking-wide mt-1">© 2026 대학교육혁신원. All rights reserved.</p>
         </div>
-
-    
     </div>
+
+
     <!-- ==================== 2-A. 교수님 프로그램 목록 화면 ==================== -->
     <div id="professorProgramsScreen" class="hidden opacity-0 transition-opacity duration-700 min-h-screen bg-slate-50 relative">
         
@@ -195,7 +194,7 @@
                         <div class="w-16 h-16 mx-auto bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
                             <i class="fa-solid fa-handshake-angle"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-violet-600 transition-colors break-keep">강의컨설팅<br><br></ㅠㄱ>1학기-26.03 ~ 06<br>2학기-26.09.~ 12.</h3>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-violet-600 transition-colors break-keep">강의컨설팅<br><br>1학기-26.03 ~ 06<br>2학기-26.09.~ 12.</h3>
                         <div class="mt-auto pt-6 inline-flex justify-center items-center text-violet-600 font-bold text-sm">
                             자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </div>
