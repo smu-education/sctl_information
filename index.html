@@ -673,7 +673,7 @@
                 // 나머지 버튼들은 아직 준비 중 알림창 띄우기
                 alert("교수님 전용 해당 프로그램 상세 페이지는 현재 준비 중입니다!");
             }
-        } // <--- 괄호 닫기 수정 완료!
+        } 
 
         // === 4. 특강 메인 화면에서 -> 프로그램 목록으로 다시 돌아가기 ===
         function goBackToPrograms() {
@@ -853,27 +853,30 @@
             if (e.target.id === 'detailModal') closeModal();
         }
 
-        // === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (투명도 버그 수정 완료!) ===
+        // === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (강력한 버전!) ===
         window.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('role') === 'professor') {
-                // 1. 인트로 화면 숨기기
+                // 1. 첫 화면(인트로) 완전 숨기기
                 document.getElementById('introScreen').style.display = 'none';
                 
-                // 2. 교수님 프로그램 화면 띄우기 및 투명도 복구
+                // 2. 교수님 프로그램 화면 가져오기
                 const profScreen = document.getElementById('professorProgramsScreen');
-                profScreen.classList.remove('hidden');
                 
-                // 3. 살짝 지연을 주어 투명도를 확실하게 100%로 올리기 (이게 없으면 안 보입니다!)
-                setTimeout(() => {
-                    profScreen.style.opacity = '1';
-                }, 50);
-
-                // 4. 스크롤 허용
+                // 3. 확실하게 보이도록 클래스와 스타일 강제 적용
+                profScreen.classList.remove('hidden');
+                profScreen.classList.remove('opacity-0');
+                profScreen.style.display = 'block';
+                profScreen.style.opacity = '1';
+                
+                // 4. (가장 중요) 스크롤이 밑에 머물러서 하얗게 보이는 현상 방지! 무조건 맨 위로 끌어올림
+                window.scrollTo(0, 0);
                 document.body.classList.remove('overflow-hidden');
                 
-                // 5. 주소창 뒤의 꼬리표(?role=professor) 깔끔하게 지우기
-                window.history.replaceState({}, document.title, window.location.pathname);
+                // 5. 주소창 뒤의 꼬리표 깔끔하게 정리
+                setTimeout(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 100);
             }
         });
     </script>
