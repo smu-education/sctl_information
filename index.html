@@ -70,6 +70,9 @@
         .delay-300 { animation-delay: 300ms; }
         .delay-400 { animation-delay: 400ms; }
         .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 leading-relaxed overflow-hidden">
@@ -90,9 +93,9 @@
         <div class="flex flex-col sm:flex-row gap-5 w-full max-w-md px-6">
             <!-- 교수님 버튼 -->
             <button onclick="enterSite('professor')" class="animate-fade-in-up delay-100 flex-1 group relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 overflow-hidden">
-                <div class="absolute inset-0 bg-blue-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+                <div class="absolute inset-0 bg-indigo-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
                 <div class="relative z-10 flex flex-col items-center gap-4">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white group-hover:text-blue-600 transition-colors">
+                    <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white group-hover:text-indigo-600 transition-colors">
                         <i class="fa-solid fa-chalkboard-user"></i>
                     </div>
                     <span class="text-xl font-bold text-slate-700 group-hover:text-white transition-colors">교수님</span>
@@ -113,11 +116,147 @@
     </div>
 
 
-    <!-- ==================== 2. 재학생 프로그램 목록 화면 ==================== -->
+    <!-- ==================== 2-A. 교수님 프로그램 목록 화면 ==================== -->
+    <div id="professorProgramsScreen" class="hidden opacity-0 transition-opacity duration-700 min-h-screen bg-slate-50 relative">
+        
+        <!-- 홈(인트로)으로 가기 버튼 -->
+        <button onclick="goHomeFromScreen('professorProgramsScreen')" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-full text-slate-600 text-sm font-bold border border-slate-200 hover:bg-slate-100 hover:-translate-x-1 transition-all shadow-sm">
+            <i class="fa-solid fa-house"></i> 처음으로
+        </button>
+
+        <div class="max-w-7xl mx-auto px-6 py-20 md:py-24">
+            <div class="text-center mb-12 lg:mb-16 animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-100 rounded-full text-sm font-bold text-indigo-600 mb-4">
+                    <i class="fa-solid fa-chalkboard-user"></i> 대학교육혁신원 프로그램
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 mb-4">교수자 프로그램</h1>
+                <p class="text-slate-500 md:text-lg">다양한 교수 지원 프로그램을 통해 교육 역량을 강화해 보세요.</p>
+            </div>
+
+            <!-- 교수님 프로그램 8개 (그리드 4x2) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                
+                <!-- 1. 세명교육력증진세미나(SEES) -->
+                <button onclick="enterProfProgram('sees')" class="animate-fade-in-up delay-100 bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-users-rectangle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors break-keep">세명교육력<br>증진세미나(SEES)</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-blue-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 2. 신교육기법활용 / FUN혁신교수법모델링 -->
+                <button onclick="enterProfProgram('fun')" class="animate-fade-in-up delay-200 bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-indigo-600 transition-colors break-keep">신교육기법활용 /<br>FUN혁신교수법모델링</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-indigo-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 3. 강의컨설팅 -->
+                <button onclick="enterProfProgram('consulting')" class="animate-fade-in-up delay-300 bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-violet-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-violet-600 transition-colors break-keep">강의컨설팅</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-violet-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 4. 강의바터링 -->
+                <button onclick="enterProfProgram('bartering')" class="animate-fade-in-up delay-400 bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-fuchsia-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-fuchsia-100 text-fuchsia-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-fuchsia-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-people-arrows"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-fuchsia-600 transition-colors break-keep">강의바터링</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-fuchsia-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 5. 맞춤형 교수법 R&D -->
+                <button onclick="enterProfProgram('rnd')" class="animate-fade-in-up delay-500 bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-purple-600 transition-colors break-keep">맞춤형 교수법 R&D</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-purple-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 6. 자가학습강의컨설팅 -->
+                <button onclick="enterProfProgram('self')" class="animate-fade-in-up delay-[600ms] bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-sky-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-sky-600 transition-colors break-keep">자가학습<br>강의컨설팅</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-sky-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 7. 강의개선계획서(CQI) -->
+                <button onclick="enterProfProgram('cqi')" class="animate-fade-in-up delay-[700ms] bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-cyan-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-cyan-600 transition-colors break-keep">강의개선계획서(CQI)</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-cyan-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 8. 교원역량진단 -->
+                <button onclick="enterProfProgram('diagnosis')" class="animate-fade-in-up delay-[800ms] bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute inset-0 bg-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <div class="w-16 h-16 mx-auto bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-teal-600 transition-colors break-keep">교원역량진단</h3>
+                        <div class="mt-auto pt-6 inline-flex justify-center items-center text-teal-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== 2-B. 재학생 프로그램 목록 화면 ==================== -->
     <div id="programsScreen" class="hidden opacity-0 transition-opacity duration-700 min-h-screen bg-slate-50 relative">
         
         <!-- 홈(인트로)으로 가기 버튼 -->
-        <button onclick="goHomeFromPrograms()" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-full text-slate-600 text-sm font-bold border border-slate-200 hover:bg-slate-100 hover:-translate-x-1 transition-all shadow-sm">
+        <button onclick="goHomeFromScreen('programsScreen')" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-full text-slate-600 text-sm font-bold border border-slate-200 hover:bg-slate-100 hover:-translate-x-1 transition-all shadow-sm">
             <i class="fa-solid fa-house"></i> 처음으로
         </button>
 
@@ -204,14 +343,14 @@
 
             <!-- 아랫줄: 2개 프로그램 (최대 너비 제한 및 가운데 정렬) -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <!-- 5. JUMP STEP UP, JUMP / JUMP 챌린지 -->
+                <!-- 5. JUMP STEP UP, JUMP / 챌린지 -->
                 <button onclick="enterProgram('jump')" class="animate-fade-in-up delay-500 bg-white p-6 xl:p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden flex flex-col h-full">
                     <div class="absolute inset-0 bg-rose-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="relative z-10 flex-grow flex flex-col">
                         <div class="w-16 h-16 mx-auto bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-3xl mb-5 group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
                             <i class="fa-solid fa-arrow-trend-up"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-rose-600 transition-colors break-keep">JUMP STEP UP,<br>JUMP / JUMP 챌린지</h3>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-rose-600 transition-colors break-keep">JUMP STEP UP,<br>JUMP / 챌린지</h3>
                         <p class="text-slate-500 text-sm xl:text-base break-keep leading-relaxed flex-grow">
                             한 단계 더 도약하기 위한 맞춤형 학습 성취 프로그램
                         </p>
@@ -243,7 +382,7 @@
     </div>
 
 
-    <!-- ==================== 3. 특강 안내 메인 페이지 ==================== -->
+    <!-- ==================== 3. 특강 안내 메인 페이지 (학생-특강 클릭 시) ==================== -->
     <div id="mainApp" class="hidden opacity-0 transition-opacity duration-700">
         <!-- Hero Section -->
         <header class="gradient-bg text-white py-16 md:py-24 px-6 overflow-hidden relative">
@@ -477,31 +616,31 @@
     <script>
         // === 1. 인트로에서 프로그램 목록으로 넘어가는 기능 ===
         function enterSite(role) {
-            if (role === 'professor') {
-                alert("교수님 전용 페이지는 현재 준비 중입니다!\n나중에 이곳에 교수님 페이지 링크를 연결할 수 있습니다.");
-                return;
-            }
-
-            // 학생 버튼을 누르면 프로그램 목록 화면 띄우기
             const introScreen = document.getElementById('introScreen');
-            const programsScreen = document.getElementById('programsScreen');
+            let targetScreen;
+
+            if (role === 'professor') {
+                targetScreen = document.getElementById('professorProgramsScreen');
+            } else {
+                targetScreen = document.getElementById('programsScreen');
+            }
 
             introScreen.style.opacity = '0';
             
             setTimeout(() => {
                 introScreen.style.display = 'none';
-                programsScreen.classList.remove('hidden');
+                targetScreen.classList.remove('hidden');
                 document.body.classList.remove('overflow-hidden'); // 스크롤 허용
                 
                 window.scrollTo(0, 0); // 화면 맨 위로
                 
                 setTimeout(() => {
-                    programsScreen.style.opacity = '1';
+                    targetScreen.style.opacity = '1';
                 }, 50);
             }, 700);
         }
 
-        // === 2. 프로그램 목록에서 특정 프로그램(특강)으로 넘어가는 기능 ===
+        // === 2. 재학생 프로그램 목록에서 특정 프로그램(특강)으로 넘어가는 기능 ===
         function enterProgram(programType) {
             if (programType !== 'lecture') {
                 alert("해당 프로그램 상세 페이지는 현재 준비 중입니다!\n곧 멋진 콘텐츠로 찾아올게요.");
@@ -525,7 +664,13 @@
             }, 700);
         }
 
-        // === 3. 특강 메인 화면에서 -> 프로그램 목록으로 다시 돌아가기 ===
+        // === 3. 교수님 프로그램 목록에서 특정 프로그램으로 넘어가는 기능 ===
+        function enterProfProgram(programType) {
+            // 지금은 교수님용 세부 페이지가 없으므로 알림창만 띄웁니다.
+            alert("교수님 전용 해당 프로그램 상세 페이지는 현재 준비 중입니다!");
+        }
+
+        // === 4. 특강 메인 화면에서 -> 프로그램 목록으로 다시 돌아가기 ===
         function goBackToPrograms() {
             const mainApp = document.getElementById('mainApp');
             const programsScreen = document.getElementById('programsScreen');
@@ -544,15 +689,15 @@
             }, 700);
         }
 
-        // === 4. 프로그램 목록에서 -> 아예 처음(인트로)으로 돌아가기 ===
-        function goHomeFromPrograms() {
+        // === 5. 각 프로그램 목록에서 -> 아예 처음(인트로)으로 돌아가기 ===
+        function goHomeFromScreen(screenId) {
             const introScreen = document.getElementById('introScreen');
-            const programsScreen = document.getElementById('programsScreen');
+            const currentScreen = document.getElementById(screenId);
 
-            programsScreen.style.opacity = '0';
+            currentScreen.style.opacity = '0';
             
             setTimeout(() => {
-                programsScreen.classList.add('hidden');
+                currentScreen.classList.add('hidden');
                 introScreen.style.display = 'flex';
                 document.body.classList.add('overflow-hidden'); // 스크롤 다시 잠금
                 
