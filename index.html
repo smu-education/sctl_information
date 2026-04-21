@@ -629,7 +629,14 @@
             
             setTimeout(() => {
                 introScreen.style.display = 'none';
+                
+                // 🚨 확실하게 다른 화면은 다 끄고 타겟만 켭니다! (공간 완전 삭제)
+                document.getElementById('professorProgramsScreen').style.display = 'none';
+                document.getElementById('programsScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'none';
+                
                 targetScreen.classList.remove('hidden');
+                targetScreen.style.display = 'block'; // 강제 노출
                 document.body.classList.remove('overflow-hidden'); // 스크롤 허용
                 
                 window.scrollTo(0, 0); // 화면 맨 위로
@@ -654,7 +661,10 @@
             
             setTimeout(() => {
                 programsScreen.classList.add('hidden');
+                programsScreen.style.display = 'none'; // 공간 완전히 지우기
+                
                 mainApp.classList.remove('hidden');
+                mainApp.style.display = 'block';
                 
                 window.scrollTo(0, 0);
                 
@@ -684,7 +694,10 @@
             
             setTimeout(() => {
                 mainApp.classList.add('hidden');
+                mainApp.style.display = 'none'; // 공간 완전히 지우기
+                
                 programsScreen.classList.remove('hidden');
+                programsScreen.style.display = 'block';
                 
                 window.scrollTo(0, 0);
                 
@@ -702,8 +715,16 @@
             currentScreen.style.opacity = '0';
             
             setTimeout(() => {
-                currentScreen.classList.add('hidden');
-                currentScreen.style.display = ''; // 🚨 [추가] 유령 화면 방지: 인라인 스타일 깔끔하게 지우기
+                // 🚨 모든 서브 화면 공간을 완전히 없앱니다 (유령 화면이 밀어내는 현상 방지!)
+                document.getElementById('professorProgramsScreen').classList.add('hidden');
+                document.getElementById('professorProgramsScreen').style.display = 'none';
+                
+                document.getElementById('programsScreen').classList.add('hidden');
+                document.getElementById('programsScreen').style.display = 'none';
+                
+                document.getElementById('mainApp').classList.add('hidden');
+                document.getElementById('mainApp').style.display = 'none';
+
                 introScreen.style.display = 'flex';
                 document.body.classList.add('overflow-hidden'); // 스크롤 다시 잠금
                 
@@ -859,20 +880,19 @@
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('role') === 'professor') {
                 
-                // 1. 첫 화면(인트로) 완전 숨기기
+                // 1. 인트로 및 불필요한 화면 완전히 공간 지우기
                 document.getElementById('introScreen').style.display = 'none';
+                document.getElementById('programsScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'none';
                 
-                // 2. 교수님 프로그램 화면 가져와서 100% 보이게 강제 덮어쓰기
+                // 2. 교수님 프로그램 화면 강제 표시
                 const profScreen = document.getElementById('professorProgramsScreen');
                 profScreen.classList.remove('hidden');
                 profScreen.classList.remove('opacity-0');
+                profScreen.style.display = 'block';
+                profScreen.style.opacity = '1';
                 
-                // 🚨 [삭제 및 수정] 버그 원인(profScreen.style.display = 'block')을 지우고 꼬임 방지
-                setTimeout(() => {
-                    profScreen.style.opacity = '1';
-                }, 50);
-                
-                // 3. 화면 멈춤(하얀 화면) 방지를 위한 스크롤 강제 리셋
+                // 3. 스크롤 락 해제 및 맨 위로
                 document.body.classList.remove('overflow-hidden');
                 window.scrollTo(0, 0);
                 
