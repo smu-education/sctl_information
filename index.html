@@ -673,7 +673,7 @@
                 // 나머지 버튼들은 아직 준비 중 알림창 띄우기
                 alert("교수님 전용 해당 프로그램 상세 페이지는 현재 준비 중입니다!");
             }
-        } // <--- 여기가 빠져있었습니다!
+        } // <--- 괄호 닫기 수정 완료!
 
         // === 4. 특강 메인 화면에서 -> 프로그램 목록으로 다시 돌아가기 ===
         function goBackToPrograms() {
@@ -852,19 +852,30 @@
         window.onclick = function(e) {
             if (e.target.id === 'detailModal') closeModal();
         }
-// === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (SEES 페이지에서 돌아올 때 사용) ===
-        window.onload = function() {
+
+        // === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (투명도 버그 수정 완료!) ===
+        window.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('role') === 'professor') {
-                // 인트로 화면 숨기고 교수님 프로그램 화면 바로 띄우기
+                // 1. 인트로 화면 숨기기
                 document.getElementById('introScreen').style.display = 'none';
-                document.getElementById('professorProgramsScreen').classList.remove('hidden');
+                
+                // 2. 교수님 프로그램 화면 띄우기 및 투명도 복구
+                const profScreen = document.getElementById('professorProgramsScreen');
+                profScreen.classList.remove('hidden');
+                
+                // 3. 살짝 지연을 주어 투명도를 확실하게 100%로 올리기 (이게 없으면 안 보입니다!)
+                setTimeout(() => {
+                    profScreen.style.opacity = '1';
+                }, 50);
+
+                // 4. 스크롤 허용
                 document.body.classList.remove('overflow-hidden');
                 
-                // 주소창 지저분한 파라미터 깔끔하게 정리
+                // 5. 주소창 뒤의 꼬리표(?role=professor) 깔끔하게 지우기
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
-        };       
+        });
     </script>
 </body>
 </html>
