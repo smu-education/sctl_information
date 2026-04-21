@@ -110,14 +110,106 @@
     </div>
 
 
-    <!-- ==================== 2. 메인 페이지 (처음엔 숨겨짐) ==================== -->
+    <!-- ==================== 2. 재학생 프로그램 목록 화면 (새로 추가됨!) ==================== -->
+    <div id="programsScreen" class="hidden opacity-0 transition-opacity duration-700 min-h-screen bg-slate-50 relative">
+        
+        <!-- 홈(인트로)으로 가기 버튼 -->
+        <button onclick="goHomeFromPrograms()" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-full text-slate-600 text-sm font-bold border border-slate-200 hover:bg-slate-100 hover:-translate-x-1 transition-all shadow-sm">
+            <i class="fa-solid fa-house"></i> 처음으로
+        </button>
+
+        <div class="max-w-6xl mx-auto px-6 py-20 md:py-24">
+            <div class="text-center mb-16 animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-100 rounded-full text-sm font-bold text-blue-600 mb-4">
+                    <i class="fa-solid fa-ranking-star"></i> 대학교육혁신원 프로그램
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 mb-4">재학생 학습법 프로그램</h1>
+                <p class="text-slate-500 md:text-lg">나에게 딱 맞는 학습법 프로그램을 선택하여 역량을 키워보세요.</p>
+            </div>
+
+            <!-- 프로그램 카드 그리드 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                <!-- 학습법 특강 버튼 (진짜 넘어가는 버튼) -->
+                <button onclick="enterProgram('lecture')" class="animate-fade-in-up delay-100 bg-white p-8 md:p-10 rounded-[2.5rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <div class="w-20 h-20 mx-auto bg-blue-100 text-blue-600 rounded-[1.5rem] flex items-center justify-center text-4xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">학습법 특강</h3>
+                        <p class="text-slate-500 text-sm md:text-base break-keep leading-relaxed">
+                            전문가의 노하우 전수! 대학 생활의 치트키를 확인하세요.
+                        </p>
+                        <div class="mt-8 inline-flex items-center text-blue-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 학습 멘토링 (준비중) -->
+                <button onclick="enterProgram('mentoring')" class="animate-fade-in-up delay-200 bg-white p-8 md:p-10 rounded-[2.5rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <div class="w-20 h-20 mx-auto bg-green-100 text-green-600 rounded-[1.5rem] flex items-center justify-center text-4xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                            <i class="fa-solid fa-people-arrows"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-green-600 transition-colors">학습 멘토링</h3>
+                        <p class="text-slate-500 text-sm md:text-base break-keep leading-relaxed">
+                            선배와 함께 목표를 달성하는 맞춤형 밀착 멘토링 프로그램
+                        </p>
+                        <div class="mt-8 inline-flex items-center text-green-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 전공 튜터링 (준비중) -->
+                <button onclick="enterProgram('tutoring')" class="animate-fade-in-up delay-200 bg-white p-8 md:p-10 rounded-[2.5rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <div class="w-20 h-20 mx-auto bg-purple-100 text-purple-600 rounded-[1.5rem] flex items-center justify-center text-4xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-purple-600 transition-colors">전공 튜터링</h3>
+                        <p class="text-slate-500 text-sm md:text-base break-keep leading-relaxed">
+                            어려운 전공 과목을 선후배와 함께 돌파하는 그룹 튜터링
+                        </p>
+                        <div class="mt-8 inline-flex items-center text-purple-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 학습 동아리 (준비중) -->
+                <button onclick="enterProgram('club')" class="animate-fade-in-up delay-200 bg-white p-8 md:p-10 rounded-[2.5rem] text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg border border-slate-100 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-orange-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <div class="w-20 h-20 mx-auto bg-orange-100 text-orange-600 rounded-[1.5rem] flex items-center justify-center text-4xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-orange-600 transition-colors">학습 동아리</h3>
+                        <p class="text-slate-500 text-sm md:text-base break-keep leading-relaxed">
+                            공통의 목표를 가진 친구들과 함께 스스로 학습하는 자율 스터디
+                        </p>
+                        <div class="mt-8 inline-flex items-center text-orange-600 font-bold text-sm">
+                            자세히 보기 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== 3. 특강 안내 메인 페이지 ==================== -->
     <div id="mainApp" class="hidden opacity-0 transition-opacity duration-700">
         <!-- Hero Section -->
         <header class="gradient-bg text-white py-16 md:py-24 px-6 overflow-hidden relative">
             
-            <!-- 홈(처음)으로 가기 버튼 추가 -->
-            <button onclick="goHome()" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-bold border border-white/30 hover:bg-white/30 hover:-translate-x-1 transition-all">
-                <i class="fa-solid fa-house"></i> 처음으로
+            <!-- 프로그램 목록으로 가기 버튼 (위치 수정됨) -->
+            <button onclick="goBackToPrograms()" class="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-bold border border-white/30 hover:bg-white/30 hover:-translate-x-1 transition-all">
+                <i class="fa-solid fa-arrow-left"></i> 프로그램 목록
             </button>
 
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
@@ -137,8 +229,7 @@
                         학습준비부터 A+성적까지, 대학 생활의 치트키를 전수해 드립니다.
                     </p>
                     
-                    <!-- !!! 완벽히 고정된 버튼 레이아웃 !!! -->
-                    <!-- grid-cols-2를 사용해 모바일에서 무조건 2칸씩 차지하도록 강제합니다. -->
+                    <!-- 버튼 레이아웃 -->
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8 w-full">
                         <a href="#schedule" class="flex justify-center items-center px-2 py-4 bg-white text-blue-600 font-bold rounded-2xl shadow-lg hover:scale-105 transition-transform text-sm md:text-base">
                             특강 일정보기
@@ -161,7 +252,7 @@
                     </div>
                 </div>
 
-                <!-- 우측 이미지 (원래의 비행.png 파일명으로 원상 복구) -->
+                <!-- 우측 이미지 -->
                 <div class="flex-shrink-0 w-72 md:w-[450px] relative mt-10 md:mt-0">
                     <img src="비행.png" 
                          id="mainCharacter"
@@ -343,62 +434,96 @@
     </div>
 
     <script>
-        // === 인트로에서 메인으로 넘어가는 기능 ===
+        // === 1. 인트로에서 프로그램 목록으로 넘어가는 기능 ===
         function enterSite(role) {
             if (role === 'professor') {
-                // [교수님 버튼] 눌렀을 때 작동할 내용
                 alert("교수님 전용 페이지는 현재 준비 중입니다!\n나중에 이곳에 교수님 페이지 링크를 연결할 수 있습니다.");
-                
-                // 나중에 교수님 페이지를 만드시면 아래 슬래시(//)를 지우고 실제 파일명이나 링크를 넣으세요!
-                // window.location.href = "교수님페이지.html"; 
                 return;
             }
 
-            // [재학생 버튼] 눌렀을 때 작동할 내용 (기존 메인 화면 띄우기)
+            // 학생 버튼을 누르면 프로그램 목록 화면 띄우기
             const introScreen = document.getElementById('introScreen');
-            const mainApp = document.getElementById('mainApp');
+            const programsScreen = document.getElementById('programsScreen');
 
-            // 1. 인트로 화면 서서히 투명해지기
             introScreen.style.opacity = '0';
             
-            // 2. 애니메이션 끝난 후 본문 표시
             setTimeout(() => {
                 introScreen.style.display = 'none';
-                mainApp.classList.remove('hidden');
-                document.body.classList.remove('overflow-hidden'); // 스크롤 활성화
+                programsScreen.classList.remove('hidden');
+                document.body.classList.remove('overflow-hidden'); // 스크롤 허용
                 
-                // 본문 서서히 나타나게
+                window.scrollTo(0, 0); // 화면 맨 위로
+                
+                setTimeout(() => {
+                    programsScreen.style.opacity = '1';
+                }, 50);
+            }, 700);
+        }
+
+        // === 2. 프로그램 목록에서 특정 프로그램(특강)으로 넘어가는 기능 ===
+        function enterProgram(programType) {
+            if (programType !== 'lecture') {
+                alert("해당 프로그램 페이지는 현재 준비 중입니다!\n곧 멋진 콘텐츠로 찾아올게요.");
+                return;
+            }
+
+            const programsScreen = document.getElementById('programsScreen');
+            const mainApp = document.getElementById('mainApp');
+
+            programsScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                programsScreen.classList.add('hidden');
+                mainApp.classList.remove('hidden');
+                
+                window.scrollTo(0, 0);
+                
                 setTimeout(() => {
                     mainApp.style.opacity = '1';
                 }, 50);
             }, 700);
         }
 
-        // === 메인 화면에서 인트로(처음)로 돌아가는 기능 ===
-        function goHome() {
-            const introScreen = document.getElementById('introScreen');
+        // === 3. 특강 메인 화면에서 -> 프로그램 목록으로 다시 돌아가기 ===
+        function goBackToPrograms() {
             const mainApp = document.getElementById('mainApp');
+            const programsScreen = document.getElementById('programsScreen');
 
-            // 1. 메인 화면 서서히 투명해지기
             mainApp.style.opacity = '0';
             
-            // 2. 애니메이션 끝난 후 인트로 표시
             setTimeout(() => {
                 mainApp.classList.add('hidden');
+                programsScreen.classList.remove('hidden');
+                
+                window.scrollTo(0, 0);
+                
+                setTimeout(() => {
+                    programsScreen.style.opacity = '1';
+                }, 50);
+            }, 700);
+        }
+
+        // === 4. 프로그램 목록에서 -> 아예 처음(인트로)으로 돌아가기 ===
+        function goHomeFromPrograms() {
+            const introScreen = document.getElementById('introScreen');
+            const programsScreen = document.getElementById('programsScreen');
+
+            programsScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                programsScreen.classList.add('hidden');
                 introScreen.style.display = 'flex';
                 document.body.classList.add('overflow-hidden'); // 스크롤 다시 잠금
                 
-                // 스크롤을 맨 위로 올림
                 window.scrollTo(0, 0);
                 
-                // 인트로 서서히 나타나게
                 setTimeout(() => {
                     introScreen.style.opacity = '1';
                 }, 50);
             }, 700);
         }
 
-        // === 데이터 및 모달 기능 (기존 사진 파일명으로 복구 완료!) ===
+        // === 기존 데이터 및 모달 기능 (사진 파일명 복구 유지) ===
         const sessionData = {
             1: {
                 title: "학습동기 점화하기<br>: 집중력으로 학습동기 끌어 올려!",
@@ -429,7 +554,6 @@
                 img: "인사.png",
                 desc: "AI시대에 어떻게 하면 더 똑똑하게 공부할 수 있을까? ",
                 points: ["AI", "AI를 이용한 자신있는 레포트", "AI 활용 과제작성 꿀팁!"],
-                // 3차시 링크 유지
                 applyLink: "https://forms.gle/Svvf9ftws6Cv3P8p6" 
             },
             4: {
