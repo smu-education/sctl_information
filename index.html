@@ -852,6 +852,19 @@
         window.onclick = function(e) {
             if (e.target.id === 'detailModal') closeModal();
         }
+// === 페이지 접속 시 특정 화면으로 바로 이동하는 기능 (SEES 페이지에서 돌아올 때 사용) ===
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('role') === 'professor') {
+                // 인트로 화면 숨기고 교수님 프로그램 화면 바로 띄우기
+                document.getElementById('introScreen').style.display = 'none';
+                document.getElementById('professorProgramsScreen').classList.remove('hidden');
+                document.body.classList.remove('overflow-hidden');
+                
+                // 주소창 지저분한 파라미터 깔끔하게 정리
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        };       
     </script>
 </body>
 </html>
