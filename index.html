@@ -666,9 +666,13 @@
 
         // === 3. 교수님 프로그램 목록에서 특정 프로그램으로 넘어가는 기능 ===
         function enterProfProgram(programType) {
-            // 지금은 교수님용 세부 페이지가 없으므로 알림창만 띄웁니다.
-            alert("교수님 전용 해당 프로그램 상세 페이지는 현재 준비 중입니다!");
-        }
+            if (programType === 'sees') {
+                // SEES 버튼을 누르면 해당 링크로 바로 이동!
+                window.location.href = "https://smu-education.github.io/sees_info/#schedule";
+            } else {
+                // 나머지 버튼들은 아직 준비 중 알림창 띄우기
+                alert("교수님 전용 해당 프로그램 상세 페이지는 현재 준비 중입니다!");
+            }        
 
         // === 4. 특강 메인 화면에서 -> 프로그램 목록으로 다시 돌아가기 ===
         function goBackToPrograms() {
